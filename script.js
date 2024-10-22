@@ -19,14 +19,17 @@ window.onload = function () {
 };
 
 document
-  .getElementById("showInfoButton")
-  .addEventListener("click", function () {
+  .getElementById("teamForm")
+  .addEventListener("submit", function (event) {
+    event.preventDefault();
     const selectedCode = document.getElementById("teamSelect").value;
     const team = teams.find((t) => t.code === selectedCode);
     const teamInfo = document.getElementById("teamInfo");
+
     if (team) {
       teamInfo.textContent = `You selected the ${team.name} (${team.code}) who play in ${team.plays}.`;
     } else {
       teamInfo.textContent = "Please select a team to see the information.";
     }
+    return false;
   });
