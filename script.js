@@ -13,6 +13,7 @@ window.onload = function () {
     const option = document.createElement("option");
     option.value = team.code;
     option.textContent = team.name;
+
     teamSelect.appendChild(option);
   });
 };
@@ -23,9 +24,8 @@ document
     const selectedCode = document.getElementById("teamSelect").value;
     const team = teams.find((t) => t.code === selectedCode);
     const teamInfo = document.getElementById("teamInfo");
-
     if (team) {
-      teamInfo.textContent = `Team: ${team.name}, Location: ${team.plays}`;
+      teamInfo.textContent = `You selected the ${team.name} (${team.code}) who play in ${team.plays}.`;
     } else {
       teamInfo.textContent = "Please select a team to see the information.";
     }
