@@ -1,8 +1,28 @@
 const teams = [
-  { code: "DAL", name: "Dallas Cowboys", plays: "Arlington, TX" },
-  { code: "DEN", name: "Denver Broncos", plays: "Denver, CO" },
-  { code: "HOU", name: "Houston Texans", plays: "Houston, TX" },
-  { code: "KAN", name: "Kansas City Chiefs", plays: "Kansas City, MO" },
+  {
+    code: "DAL",
+    name: "Dallas Cowboys",
+    plays: "Arlington, TX",
+    imgSrc: "./images/DAL.png",
+  },
+  {
+    code: "DEN",
+    name: "Denver Broncos",
+    plays: "Denver, CO",
+    imgSrc: "./images/DEN.png",
+  },
+  {
+    code: "HOU",
+    name: "Houston Texans",
+    plays: "Houston, TX",
+    imgSrc: "./images/HOU.png",
+  },
+  {
+    code: "KAN",
+    name: "Kansas City Chiefs",
+    plays: "Kansas City, MO",
+    imgSrc: "./images/KAN.png",
+  },
 ];
 
 window.onload = function () {
@@ -22,11 +42,12 @@ window.onload = function () {
   teamSelect.addEventListener("change", function () {
     const selectedCode = teamSelect.value;
     const teamInfo = document.getElementById("teamInfo");
+    const teamParagraph = teamInfo.querySelector("p");
+    const teamImage = document.getElementById("teamImage");
 
     if (selectedCode === "") {
-      teamInfo.textContent = "";
-    } else {
-      teamInfo.textContent = "";
+      teamParagraph.textContent = "";
+      teamImage.style.display = "none";
     }
   });
 };
@@ -40,12 +61,20 @@ document
       return t.code === selectedCode;
     });
     const teamInfo = document.getElementById("teamInfo");
+    const teamParagraph = teamInfo.querySelector("p");
+    const teamImage = document.getElementById("teamImage");
 
     if (selectedCode === "") {
-      teamInfo.textContent = "";
+      teamParagraph.textContent = "";
+      teamImage.style.display = "none";
     } else if (team) {
-      teamInfo.textContent = `You selected the ${team.name} (${team.code}) who play in ${team.plays}.`;
+      teamParagraph.textContent = `You selected the ${team.name} (${team.code}) who play in ${team.plays}.`;
+      teamImage.src = team.imgSrc;
+      teamImage.alt = team.name;
+      teamImage.style.display = "block";
     } else {
-      teamInfo.textContent = "Please select a team to see the information.";
+      teamParagraph.textContent =
+        "Please select a team to see the information.";
+      teamImage.style.display = "none";
     }
   });
